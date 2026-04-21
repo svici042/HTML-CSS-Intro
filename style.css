@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+body {
+    min-height: 100svh;
+    color: rgb(red, green, blue)
+}
+ h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+    color: rgb(255, 0, 0);
+}
+article {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: rgb(240, 240, 240);
+    border: solid 1px rgb(200, 200, 200);
+}
+#article-heading {
+   min-height: 200px;
+
+}
+h2 {
+    text-align: center;
+    margin-top: 10px;
+}
+#article-heading {
+    min-height: 200px;
+    padding: 20px;
+}
