@@ -134,3 +134,234 @@ document.addEventListener('DOMContentLoaded', () => {
 
     multiplyTasksBtn.addEventListener('click', multiplyTasks);
 });
+
+/* ===== KALENDER ===== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const calendarDays = document.getElementById('calendar-days');
+    const calendarMonthYear = document.getElementById('calendar-month-year');
+    const prevMonthBtn = document.getElementById('prev-month');
+    const nextMonthBtn = document.getElementById('next-month');
+    const selectedDateInfo = document.getElementById('selected-date-info');
+
+    let currentDate = new Date();
+    let displayedMonth = currentDate.getMonth();
+    let displayedYear = currentDate.getFullYear();
+    let selectedDate = null;
+
+    const monthNames = [
+        'Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni',
+        'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'
+    ];
+
+    const weekdayNames = [
+        'Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'
+    ];
+
+    function renderCalendar() {
+        calendarDays.innerHTML = '';
+        calendarMonthYear.textContent = `${monthNames[displayedMonth]} ${displayedYear}`;
+
+        const firstDay = new Date(displayedYear, displayedMonth, 1);
+        const lastDay = new Date(displayedYear, displayedMonth + 1, 0);
+        const daysInMonth = lastDay.getDate();
+
+        // Day of week of first day (0 = Sunday, 1 = Monday, etc.)
+        // Adjust for Monday start: Monday=0, Tuesday=1, ..., Sunday=6
+        let startingDay = firstDay.getDay() - 1;
+        if (startingDay === -1) startingDay = 6;
+
+        // Previous month days
+        const prevMonthLastDay = new Date(displayedYear, displayedMonth, 0).getDate();
+        for (let i = startingDay - 1; i >= 0; i--) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'calendar-day other-month';
+            dayDiv.textContent = prevMonthLastDay - i;
+            calendarDays.appendChild(dayDiv);
+        }
+
+        // Current month days
+        for (let day = 1; day <= daysInMonth; day++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'calendar-day';
+            dayDiv.textContent = day;
+
+            const checkDate = new Date(displayedYear, displayedMonth, day);
+
+            // Check if it's today
+            const today = new Date();
+            if (checkDate.toDateString() === today.toDateString()) {
+                dayDiv.classList.add('today');
+            }
+
+            // Check if it's selected
+            if (selectedDate && checkDate.toDateString() === selectedDate.toDateString()) {
+                dayDiv.classList.add('selected');
+            }
+
+            dayDiv.addEventListener('click', () => {
+                selectedDate = checkDate;
+                renderCalendar();
+                updateSelectedDateInfo();
+            });
+
+            calendarDays.appendChild(dayDiv);
+        }
+
+        // Next month days
+        const totalCells = startingDay + daysInMonth;
+        const remainingCells = 42 - totalCells; // 6 rows * 7 days
+        for (let day = 1; day <= remainingCells; day++) {
+            const dayDiv = document.createElement('div');
+            dayDiv.className = 'calendar-day other-month';
+            dayDiv.textContent = day;
+            calendarDays.appendChild(dayDiv);
+        }
+    }
+
+    function updateSelectedDateInfo() {
+        if (selectedDate) {
+            const formatted = selectedDate.toLocaleDateString('no-NO', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+            selectedDateInfo.textContent = `Valgt dato: ${formatted}`;
+        } else {
+            selectedDateInfo.textContent = 'Klikk på en dato for å velge';
+        }
+    }
+
+    prevMonthBtn.addEventListener('click', () => {
+        displayedMonth--;
+        if (displayedMonth < 0) {
+            displayedMonth = 11;
+            displayedYear--;
+        }
+        renderCalendar();
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+        displayedMonth++;
+        if (displayedMonth > 11) {
+            displayedMonth = 0;
+            displayedYear++;
+        }
+        renderCalendar();
+    });
+
+    renderCalendar();
+    updateSelectedDateInfo();
+});
+
+/* ===== KALKULATOR ===== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    const display = document.getElementById('calc-display');
+    const buttons = document.querySelectorAll('.calc-btn');
+
+    let currentValue = '0';
+    let previousValue = '';
+    let operator = '';
+    let shouldResetDisplay = false;
+
+    function updateDisplay() {
+        display.textContent = currentValue;
+    }
+
+    function clear() {
+        currentValue = '0';
+        previousValue = '';
+        operator = '';
+    }
+
+    function deleteLast() {
+        if (shouldResetDisplay) return;
+        if (currentValue.length === 1) {
+            currentValue = '0';
+        } else {
+            currentValue = currentValue.slice(0, -1);
+        }
+    }
+
+    function appendNumber(numStr) {
+        if (shouldResetDisplay) {
+            currentValue = '';
+            shouldResetDisplay = false;
+        }
+        if (currentValue === '0' && numStr !== '.') {
+            currentValue = numStr;
+        } else if (numStr === '.' && currentValue.includes('.')) {
+            return;
+        } else {
+            currentValue += numStr;
+        }
+    }
+
+    function setOperator(op) {
+        if (operator !== '' && !shouldResetDisplay) {
+            calculate();
+        }
+        previousValue = currentValue;
+        operator = op;
+        shouldResetDisplay = true;
+    }
+
+    function calculate() {
+        if (operator === '' || previousValue === '') return;
+
+        const prev = parseFloat(previousValue);
+        const current = parseFloat(currentValue);
+        let result = 0;
+
+        switch (operator) {
+            case '+':
+                result = prev + current;
+                break;
+            case '-':
+                result = prev - current;
+                break;
+            case '*':
+                result = prev * current;
+                break;
+            case '/':
+                if (current === 0) {
+                    currentValue = 'Error';
+                    operator = '';
+                    previousValue = '';
+                    shouldResetDisplay = true;
+                    return;
+                }
+                result = prev / current;
+                break;
+        }
+
+        currentValue = result.toString();
+        operator = '';
+        previousValue = '';
+        shouldResetDisplay = true;
+    }
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const action = btn.dataset.action;
+            const number = btn.dataset.number;
+            const op = btn.dataset.op;
+
+            if (number !== undefined) {
+                appendNumber(number);
+            } else if (action === 'clear') {
+                clear();
+            } else if (action === 'delete') {
+                deleteLast();
+            } else if (action === 'operator') {
+                setOperator(op);
+            } else if (action === 'calculate') {
+                calculate();
+            }
+
+            updateDisplay();
+        });
+    });
+});

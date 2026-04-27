@@ -29,6 +29,47 @@
             <ul id="todo-list"></ul>
             <button id="multiply-tasks-btn" class="multiply-btn secondary">✨ Multipliser 3 oppgaver</button>
         </section>
+        <section class="calendar-section">
+            <h2>📅 Kalender</h2>
+            <div class="calendar-container">
+                <div class="calendar-header">
+                    <button id="prev-month">&#9664;</button>
+                    <h3 id="calendar-month-year"></h3>
+                    <button id="next-month">&#9654;</button>
+                </div>
+                <div class="calendar-weekdays">
+                    <div>Man</div><div>Tir</div><div>Ons</div><div>Tor</div><div>Fre</div><div>Lør</div><div>Søn</div>
+                </div>
+                <div id="calendar-days" class="calendar-days"></div>
+            </div>
+            <div id="selected-date-info" class="selected-date-info"></div>
+        </section>
+        <section class="calculator-section">
+            <h2>🧮 Kalkulator</h2>
+            <div class="calculator">
+                <div id="calc-display" class="calc-display">0</div>
+                <div class="calc-buttons">
+                    <button class="calc-btn clear" data-action="clear">C</button>
+                    <button class="calc-btn operator" data-action="operator" data-op="/">÷</button>
+                    <button class="calc-btn operator" data-action="operator" data-op="*">×</button>
+                    <button class="calc-btn delete" data-action="delete">⌫</button>
+                    <button class="calc-btn" data-number="7">7</button>
+                    <button class="calc-btn" data-number="8">8</button>
+                    <button class="calc-btn" data-number="9">9</button>
+                    <button class="calc-btn operator" data-action="operator" data-op="-">−</button>
+                    <button class="calc-btn" data-number="4">4</button>
+                    <button class="calc-btn" data-number="5">5</button>
+                    <button class="calc-btn" data-number="6">6</button>
+                    <button class="calc-btn operator" data-action="operator" data-op="+">+</button>
+                    <button class="calc-btn" data-number="1">1</button>
+                    <button class="calc-btn" data-number="2">2</button>
+                    <button class="calc-btn" data-number="3">3</button>
+                    <button class="calc-btn equal" data-action="calculate">=</button>
+                    <button class="calc-btn zero" data-number="0">0</button>
+                    <button class="calc-btn" data-number=".">.</button>
+                </div>
+            </div>
+        </section>
     </main>
 </body>
 </html>

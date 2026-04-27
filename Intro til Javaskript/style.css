@@ -190,3 +190,215 @@ section {
 .delete-btn:hover {
   background: #ff6666;
 }
+
+/* ===== CALENDAR SECTION ===== */
+.calendar-section {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.calendar-container {
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #333;
+  backdrop-filter: blur(10px);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-header button {
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+}
+
+.calendar-header button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+}
+
+#calendar-month-year {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.calendar-weekdays div {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #00d4ff;
+  padding: 8px;
+}
+
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.calendar-day:hover {
+  background: rgba(0, 212, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.calendar-day.today {
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.calendar-day.selected {
+  border: 2px solid #f72585;
+  box-shadow: 0 0 15px rgba(247, 37, 133, 0.5);
+}
+
+.calendar-day.other-month {
+  opacity: 0.3;
+}
+
+.selected-date-info {
+  margin-top: 20px;
+  padding: 16px;
+  background: rgba(26, 26, 26, 0.8);
+  border-radius: 12px;
+  border: 1px solid #333;
+  font-size: 1.1rem;
+  color: #00d4ff;
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== CALCULATOR SECTION ===== */
+.calculator-section {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.calculator {
+  background: rgba(26, 26, 26, 0.9);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid #333;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.calc-display {
+  background: #0f0f0f;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: right;
+  color: #fff;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  border: 1px solid #333;
+}
+
+.calc-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.calc-btn {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calc-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.calc-btn:active {
+  transform: scale(0.95);
+}
+
+.calc-btn.operator {
+  background: linear-gradient(135deg, #f72585 0%, #7209b7 100%);
+  border: none;
+}
+
+.calc-btn.operator:hover {
+  box-shadow: 0 4px 15px rgba(247, 37, 133, 0.4);
+}
+
+.calc-btn.equal {
+  background: linear-gradient(135deg, #00d4ff 0%, #7b2cbf 100%);
+  border: none;
+  grid-row: span 2;
+  aspect-ratio: auto;
+}
+
+.calc-btn.equal:hover {
+  box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
+}
+
+.calc-btn.clear,
+.calc-btn.delete {
+  background: rgba(255, 68, 68, 0.2);
+  color: #ff4444;
+  border: 1px solid rgba(255, 68, 68, 0.3);
+}
+
+.calc-btn.clear:hover,
+.calc-btn.delete:hover {
+  background: rgba(255, 68, 68, 0.3);
+}
+
+.calc-btn.zero {
+  aspect-ratio: auto;
+  grid-column: span 2;
+}
