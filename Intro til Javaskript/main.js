@@ -1,5 +1,5 @@
-console.log("Hello World!")
-let num = 1 + 1
+console.log("Hello World!");
+let num = 1 + 1;
 num = 15;
 console.log(num);
 let name = "Slava";
@@ -7,7 +7,7 @@ console.log(name);
 const pi = 3.141;
 console.log(pi);
 
-//*Datas struktur*/
+// *Data structure*/
 
 // Array
 const shopinglist = [
@@ -18,12 +18,13 @@ const shopinglist = [
 ];
 
 console.log(shopinglist[0]);
-console.log (shopinglist.length);
+console.log(shopinglist.length);
 
 
-// for log exempeel/
+// for loop example
 
-for(let counter = 0; counter <shopinglist.length; counter++) {console.log(shopinglist[counter]);
+for (let counter = 0; counter < shopinglist.length; counter++) {
+    console.log(shopinglist[counter]);
 }
 
 // Display shopping list on the page
@@ -37,25 +38,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-//let num2 = 0;
+// let num2 = 0;
 
-//for (let i = 0; i < 15; i++) {
-  //  num2 += i;
-//}
-//console.log(num2);
-//object data structure
+// for (let i = 0; i < 15; i++) {
+//     num2 += i;
+// }
+// console.log(num2);
+
+// Object data structure
 const person = {
-   "name": 
-   "Slava",
-    "age": 44,
-    "hobbies": ["programming", "gaming", "cooking"]
+    name: "Slava",
+    age: 44,
+    hobbies: ["programming", "gaming", "cooking"]
 };
 
 const Slava = person;
 Slava.name = "Slava";
 Slava.age = 44;
 Slava.hobbies = ["programming", "gaming", "cooking"];
-
-console.log(Slava);
 
 console.log(Slava);
